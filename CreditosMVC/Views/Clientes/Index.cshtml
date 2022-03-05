@@ -1,0 +1,30 @@
+﻿@model List<TbCliente>
+
+    <h1>Clientes</h1>
+    <p>
+        <a class="btn btn-primary" asp-action="Agregar">Agregar</a>
+    </p>
+    <table class="table table table-striped">
+        <thead>
+            <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Numero de Identificacion</th>
+            <th></th>            
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var cliente in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m=>cliente.Nombre) </td>
+                    <td>@Html.DisplayFor(m=>cliente.Apellidos)</td>
+                    <td>@Html.DisplayFor(m=>cliente.NumeroIdentificacion)</td>
+                    <td>
+                        <a class="btn btn-secondary" asp-action="Agregar" asp-controller="CuentasAhorro" asp-route-id="@cliente.IdCliente">Nueva cuenta de ahorro</a>
+                        <a class="btn btn-success" asp-action="VerCuentas" asp-controller="CuentasAhorro" asp-route-id="@cliente.IdCliente">Ver cuentas</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

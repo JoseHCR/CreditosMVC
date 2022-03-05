@@ -1,0 +1,39 @@
+﻿@model List<TbHistorialTransaccione>
+@{
+    string color = "";
+}
+    <h1>Historial de transacciones</h1>  <b></b>
+   @* <p>
+        <a asp-action="Agregar" asp-route>Nueva cuenta de ahorro</a>
+    </p>*@
+    <table class="table table table-striped">
+        <thead>
+            <tr>
+            <th>Concepto</th>
+            <th>Monto</th>
+            <th>Saldo anterior</th>
+            <th>Saldo nuevo</th> 
+            <th>Fecha transaccion</th>
+            
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var transaccion in Model)
+            {
+            if (transaccion.Concepto == "Deposito")
+            { color = "green"; }
+            else
+                color = "red";
+
+                <tr style="color:@color;">
+                    <td>@Html.DisplayFor(m=>transaccion.Concepto)</td>
+                    <td>@Html.DisplayFor(m=>transaccion.Monto)</td>
+                    <td>@Html.DisplayFor(m=>transaccion.SaldoAnterior)</td>
+                    <td>@Html.DisplayFor(m=>transaccion.SaldoActual)</td>
+                    <td>@Html.DisplayFor(m=>transaccion.FechaTransaccion)</td>
+                    
+                   
+                </tr>
+            }
+        </tbody>
+    </table>

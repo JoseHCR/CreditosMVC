@@ -1,0 +1,49 @@
+﻿@using CreditosMVC.Models.ViewsModels
+@model TransaccionesViewModel
+
+<h1>Depositar a cuenta</h1> <b>Numero de cuenta: @ViewBag.NumeroCuenta</b>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Depositar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <div class="mb-3">
+                <label asp-for="Monto" class="control-label"></label>
+                <input asp-for="Monto" class="form-control" />
+                <span asp-validation-for="Monto" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="mb-3">
+                <label asp-for="SaldoActual" class="control-label"></label>
+                <input asp-for="SaldoActual" class="form-control" value="@ViewBag.Monto" readonly />
+                <span asp-validation-for="SaldoActual" class="text-danger"></span>
+                </div>
+            </div>
+
+             <div class="form-group" style="display:none;">
+                 <div class="mb-3">
+                <label asp-for="IdCuentaAhorro" class="control-label"></label>
+                <select asp-for="IdCuentaAhorro" class="form-control" asp-items="ViewBag.CuentaAhorro"></select> 
+                <span asp-validation-for="IdCuentaAhorro" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Depositar" class="btn btn-primary"  />
+                <a class="btn btn-light" asp-action="Index" asp-controller="CuentasAhorro">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
